@@ -95,13 +95,8 @@ int main()
     vector<vector<string>> dumai(8,vector<string>(8,".."));
 
     ifstream CHITKA("cond.txt");
-<<<<<<< HEAD
-    getline(CHITKA,str);                //������ ������ ����, ��� ������� �������
-    numb = stoi(str);                   //������ ������ ����, ��� ������� �������
-=======
     getline(CHITKA,str);                //запись номера хода, для понятия стороны
     numb = stoi(str);                   //запись номера хода, для понятия стороны
->>>>>>> f768005d8ec0fdc6a4601f0d64a40f5a52b1b1ea
     while(getline(CHITKA,str))
         hodi.push_back(str);
     CHITKA.close();
@@ -120,11 +115,8 @@ int main()
         }
         color ++;
     }
-<<<<<<< HEAD
-    if(numb % 2 == 0) // ����������� ������� �� ������� ������ ���������.
-=======
+
     if(numb % 2 == 0) // ОПРЕДЕЛЕНИЕ СТОРОНЫ
->>>>>>> f768005d8ec0fdc6a4601f0d64a40f5a52b1b1ea
     {
         for(int i = 0;i<long(hodi.size());i=i+2)
         {
@@ -177,12 +169,8 @@ int main()
                 figuri[5]--;
         }                                           // Сколько фигур осталось в запасе
 
-<<<<<<< HEAD
-        for(int r = 0; r < int(dumai.size()); r += 1)       // ���������� ����� ������� ������
-=======
         int maksimal = 0, s_p, most_expensive_fig_R, most_expensive_fig_C;
         for(int r = 0; r < int(dumai.size()); r += 1)       // Нахождение самой дорогой фигуры
->>>>>>> f768005d8ec0fdc6a4601f0d64a40f5a52b1b1ea
         {
             for(int c = 0; c < int(dumai[r].size()); c += 1)
             {
