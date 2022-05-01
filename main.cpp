@@ -187,27 +187,23 @@ int main()
             }
         }                                                   // Нахождение самой дорогой фигуры
 
-        if(maksimal == 8) // Атака на ферзя
+        if(maksimal == 8)
         {
-            if(figuri[0]!=0 and most_expensive_fig_R!=0) // пешками
+            if(figuri[0]!=0 and (dumai[most_expensive_fig_R-1][most_expensive_fig_C+1]==".."  or dumai[most_expensive_fig_R-1][most_expensive_fig_C-1]==".."))
             {
                 figura = "P";
-                if(most_expensive_fig_R-1 >=0 and most_expensive_fig_R-1 < 8 and most_expensive_fig_C+1>=0 and most_expensive_fig_C+1<8 and most_expensive_fig_C-1>=0 and most_expensive_fig_C-1<8)
+                if(dumai[most_expensive_fig_R-1][most_expensive_fig_C+1]=="..")
                 {
-                    if(dumai[most_expensive_fig_R-1][most_expensive_fig_C+1]=="..")
-                    {
-                        posicia_bukva = convert_for_pos(most_expensive_fig_C+1);
-                        posicia_4islo = to_string(8-most_expensive_fig_R+1);
-                    }
-                    else if(dumai[most_expensive_fig_R-1][most_expensive_fig_C-1]=="..")
-                    {
-                        posicia_bukva = convert_for_pos(most_expensive_fig_C-1);
-                        posicia_4islo = to_string(8-most_expensive_fig_R+1);
-                    }
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C+1);
+                    posicia_4islo = to_string(8-most_expensive_fig_R+1);
+                }
+                else if(dumai[most_expensive_fig_R-1][most_expensive_fig_C-1]=="..")
+                {
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C-1);
+                    posicia_4islo = to_string(8-most_expensive_fig_R+1);
                 }
             }
-            
-            if (figuri[2]!=0) // конями
+            else if (figuri[2]!=0 and (dumai[most_expensive_fig_R-2][most_expensive_fig_C-1]==".." or dumai[most_expensive_fig_R-2][most_expensive_fig_C+1]==".." or dumai[most_expensive_fig_R-1][most_expensive_fig_C-2]==".." or dumai[most_expensive_fig_R-1][most_expensive_fig_C+2]==".." or dumai[most_expensive_fig_R+1][most_expensive_fig_C-2]==".." or dumai[most_expensive_fig_R+1][most_expensive_fig_C+2]==".."))
             {
                 figura = "N";
                 if(dumai[most_expensive_fig_R-2][most_expensive_fig_C-1]=="..")
@@ -215,8 +211,42 @@ int main()
                     posicia_bukva = convert_for_pos(most_expensive_fig_C-1);
                     posicia_4islo = to_string(8-most_expensive_fig_R+2);
                 }
+                else if(dumai[most_expensive_fig_R-2][most_expensive_fig_C+1]=="..")
+                {
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C+1);
+                    posicia_4islo = to_string(8-most_expensive_fig_R+2);
+                }
+                else if(dumai[most_expensive_fig_R-1][most_expensive_fig_C-2]=="..")
+                {
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C-2);
+                    posicia_4islo = to_string(8-most_expensive_fig_R+1);
+                }
+                else if(dumai[most_expensive_fig_R-1][most_expensive_fig_C+2]=="..")
+                {
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C+2);
+                    posicia_4islo = to_string(8-most_expensive_fig_R+1);
+                }
+                else if(dumai[most_expensive_fig_R+1][most_expensive_fig_C-2]=="..")
+                {
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C-2);
+                    posicia_4islo = to_string(8-most_expensive_fig_R-1);
+                }
+                else if(dumai[most_expensive_fig_R+1][most_expensive_fig_C+2]=="..")
+                {
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C+2);
+                    posicia_4islo = to_string(8-most_expensive_fig_R-1);
+                }
+                else if(dumai[most_expensive_fig_R+2][most_expensive_fig_C+1]=="..")
+                {
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C+1);
+                    posicia_4islo = to_string(8-most_expensive_fig_R-2);
+                }
+                else if(dumai[most_expensive_fig_R+2][most_expensive_fig_C-1]=="..")
+                {
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C-1);
+                    posicia_4islo = to_string(8-most_expensive_fig_R-2);
+                }
             }
-            
             else            // рандом
             {
                 while (!for_random)
@@ -236,6 +266,24 @@ int main()
                 }
             }
         }
+        else            // рандом
+        {
+            while (!for_random)
+            {
+                prov = randomize(6);
+                if(figuri[prov-1]>0)
+                    figura = convert_for_fig(prov);
+                prov = randomize(8);
+                prov2 = randomize(8);
+                if(matrix[8-prov][prov2-1] == "..")
+                {
+                    posicia_bukva = convert_for_pos(prov2-1);
+                    posicia_4islo = to_string(prov);
+                }
+                if (posicia_bukva!="" and posicia_4islo!="" and figura!="")
+                    for_random = true;
+            }
+        }
 
         for(int r = 0; r < int(matrix.size()); r += 1){
             for(int c = 0; c < int(matrix[r].size()); c += 1)
@@ -243,7 +291,7 @@ int main()
             cout<<endl;
         }
         ofstream f("hod.txt");
-        f << figura << posicia_bukva << posicia_4islo;
+        f <<figura<<posicia_bukva<<posicia_4islo;
         f.close();
     }
     return 0;
