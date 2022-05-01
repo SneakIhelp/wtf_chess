@@ -9,11 +9,11 @@
 
 using namespace std;
 
-long randomize(long raz){
+long randomize(long raz){       // рандом
     return rand() % raz + 1;
 }
 
-int convert_for_matrix (string per)
+int convert_for_matrix (string per) // из A - 0
 {
     if(per == "A")
         return 0;
@@ -33,7 +33,7 @@ int convert_for_matrix (string per)
         return 7;
 }
 
-string convert_for_fig (long per)
+string convert_for_fig (long per) // из 1 - P, для рандома
 {
     if(per == 1)
         return "P";
@@ -49,7 +49,7 @@ string convert_for_fig (long per)
         return "K";
 }
 
-string convert_for_pos (long per)
+string convert_for_pos (long per) // из 0 - A
 {
     if(per == 0)
         return "A";
@@ -69,7 +69,7 @@ string convert_for_pos (long per)
         return "H";
 }
 
-int stoimost_figuri(string str)
+int stoimost_figuri(string str) // ценность фигуры
 {
     if(str == "P")
         return 1;
@@ -95,15 +95,20 @@ int main()
     vector<vector<string>> dumai(8,vector<string>(8,".."));
 
     ifstream CHITKA("cond.txt");
+<<<<<<< HEAD
     getline(CHITKA,str);                //������ ������ ����, ��� ������� �������
     numb = stoi(str);                   //������ ������ ����, ��� ������� �������
+=======
+    getline(CHITKA,str);                //запись номера хода, для понятия стороны
+    numb = stoi(str);                   //запись номера хода, для понятия стороны
+>>>>>>> f768005d8ec0fdc6a4601f0d64a40f5a52b1b1ea
     while(getline(CHITKA,str))
         hodi.push_back(str);
     CHITKA.close();
 
     ifstream for_matrix("cond.txt");
     getline(for_matrix,bar);
-    while(getline(for_matrix,bar))
+    while(getline(for_matrix,bar)) // заполнение матрицы как шахм. доски
     {
         if(color%2==0){
             matrix[8-stoi(bar.substr(2,1))][convert_for_matrix(bar.substr(1,1))] = "W"+bar.substr(0,1);
@@ -115,7 +120,11 @@ int main()
         }
         color ++;
     }
+<<<<<<< HEAD
     if(numb % 2 == 0) // ����������� ������� �� ������� ������ ���������.
+=======
+    if(numb % 2 == 0) // ОПРЕДЕЛЕНИЕ СТОРОНЫ
+>>>>>>> f768005d8ec0fdc6a4601f0d64a40f5a52b1b1ea
     {
         for(int i = 0;i<long(hodi.size());i=i+2)
         {
@@ -152,7 +161,7 @@ int main()
     }
     if(numb % 2 == 1)
     {
-        for(int i = 1;i<long(hodi.size());i=i+2)
+        for(int i = 1;i<long(hodi.size());i=i+2)    // Сколько фигур осталось в запасе
         {
             if(hodi[i].substr(0,1) == "P")
                 figuri[0]--;
@@ -166,10 +175,14 @@ int main()
                 figuri[4]--;
             else if(hodi[i].substr(0,1) == "K")
                 figuri[5]--;
-        }
-        int maksimal = 0, s_p, most_expensive_fig_R, most_expensive_fig_C;
+        }                                           // Сколько фигур осталось в запасе
 
+<<<<<<< HEAD
         for(int r = 0; r < int(dumai.size()); r += 1)       // ���������� ����� ������� ������
+=======
+        int maksimal = 0, s_p, most_expensive_fig_R, most_expensive_fig_C;
+        for(int r = 0; r < int(dumai.size()); r += 1)       // Нахождение самой дорогой фигуры
+>>>>>>> f768005d8ec0fdc6a4601f0d64a40f5a52b1b1ea
         {
             for(int c = 0; c < int(dumai[r].size()); c += 1)
             {
@@ -184,12 +197,11 @@ int main()
                     }
                 }
             }
-        }
-                                        //vector<int> figuri {8,2,2,2,1,1};
-                                        //                    P B N R Q K
-        if(maksimal == 8)
+        }                                                   // Нахождение самой дорогой фигуры
+
+        if(maksimal == 8) // Атака на ферзя
         {
-            if(figuri[0]!=0 and most_expensive_fig_R!=0)
+            if(figuri[0]!=0 and most_expensive_fig_R!=0) // пешками
             {
                 figura = "P";
                 if(most_expensive_fig_R-1 >=0 and most_expensive_fig_R-1 < 8 and most_expensive_fig_C+1>=0 and most_expensive_fig_C+1<8 and most_expensive_fig_C-1>=0 and most_expensive_fig_C-1<8)
@@ -206,24 +218,18 @@ int main()
                     }
                 }
             }
-            else if(figuri[1]!=0 and most_expensive_fig_R!=7)
+            
+            if (figuri[2]!=0) // конями
             {
-                figura = "B";
-                if(most_expensive_fig_R+1 >= 0 and most_expensive_fig_R+1 < 8 and most_expensive_fig_C+1>=0 and most_expensive_fig_C+1<8 and most_expensive_fig_C-1>=0 and most_expensive_fig_C-1<8)
+                figura = "N";
+                if(dumai[most_expensive_fig_R-2][most_expensive_fig_C-1]=="..")
                 {
-                    if(dumai[most_expensive_fig_R+1][most_expensive_fig_C-1]=="..")
-                    {
-                        posicia_bukva = convert_for_pos(most_expensive_fig_C-1);
-                        posicia_4islo = to_string(8-most_expensive_fig_R-1);
-                    }
-                    else if (dumai[most_expensive_fig_R+1][most_expensive_fig_C+1]=="..")
-                    {
-                        posicia_bukva = convert_for_pos(most_expensive_fig_C+1);
-                        posicia_4islo = to_string(8-most_expensive_fig_R-1);
-                    }
+                    posicia_bukva = convert_for_pos(most_expensive_fig_C-1);
+                    posicia_4islo = to_string(8-most_expensive_fig_R+2);
                 }
             }
-            else
+            
+            else            // рандом
             {
                 while (!for_random)
                 {
