@@ -243,7 +243,7 @@ int main()
             cout<<endl;
         }
         ofstream f("hod.txt");
-        f <<figura<<posicia_bukva<<posicia_4islo;
+        f << figura << posicia_bukva << posicia_4islo;
         f.close();
     }
     return 0;
