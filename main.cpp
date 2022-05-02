@@ -133,23 +133,6 @@ int main()
             else if(hodi[i].substr(0,1) == "K")
                 figuri[5]--;
         }
-        while (!for_random)
-        {
-            prov = randomize(6);
-            if(figuri[prov-1]>0)
-                figura = convert_for_fig(prov);
-            prov = randomize(8);
-            prov2 = randomize(8);
-            if(matrix[8-prov][prov2-1] == "."){
-                posicia_bukva = convert_for_pos(prov2-1);
-                posicia_4islo = to_string(prov);
-            }
-            if (posicia_bukva!="" and posicia_4islo!="" and figura!="")
-                for_random = true;
-        }
-        ofstream f("hod.txt");
-        f <<figura<<posicia_bukva<<posicia_4islo;
-        f.close();
     }
     if(numb % 2 == 1)
     {
@@ -207,7 +190,7 @@ int main()
                     }
                 }
             }
-            else if (figuri[2]!=0 and (dumai[most_expensive_fig_R-2][most_expensive_fig_C-1]==".." or dumai[most_expensive_fig_R-2][most_expensive_fig_C+1]==".." or dumai[most_expensive_fig_R-1][most_expensive_fig_C-2]==".." or dumai[most_expensive_fig_R-1][most_expensive_fig_C+2]==".." or dumai[most_expensive_fig_R+1][most_expensive_fig_C-2]==".." or dumai[most_expensive_fig_R+1][most_expensive_fig_C+2]==".."))
+            else if (figuri[2]!=0 and (most_expensive_fig_R-2 >= 0 and most_expensive_fig_C-1 >= 0 or most_expensive_fig_R-2 >= 0 and most_expensive_fig_C+1 < 8 or most_expensive_fig_R-1 >= 0 and most_expensive_fig_C-2 ==".." or dumai[most_expensive_fig_R-1][most_expensive_fig_C+2]==".." or dumai[most_expensive_fig_R+1][most_expensive_fig_C-2]==".." or dumai[most_expensive_fig_R+1][most_expensive_fig_C+2]==".."))
             {
                 figura = "N";
                 if(dumai[most_expensive_fig_R-2][most_expensive_fig_C-1]=="..")
