@@ -195,6 +195,7 @@ int main()
                 if(most_expensive_fig_R-1 >=0 and most_expensive_fig_R-1 < 8 and most_expensive_fig_C+1>=0 and most_expensive_fig_C+1<8 and most_expensive_fig_C-1>=0 and most_expensive_fig_C-1<8)
                 {
                     if(dumai[most_expensive_fig_R-1][most_expensive_fig_C+1]=="..")
+                    
                     {
                         posicia_bukva = convert_for_pos(most_expensive_fig_C+1);
                         posicia_4islo = to_string(8-most_expensive_fig_R+1);
@@ -220,7 +221,7 @@ int main()
             else            // рандом
             {
                 while (!for_random)
-                {
+                { 
                     prov = randomize(6);
                     if(figuri[prov-1]>0)
                         figura = convert_for_fig(prov);
