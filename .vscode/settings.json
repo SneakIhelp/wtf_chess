@@ -1,6 +1,8 @@
 {
   "files.associations": {
-    "xstring": "cpp"
+    "xstring": "cpp",
+    "vector": "cpp",
+    "random": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled",
   "C_Cpp_Runner.cStandard": "",
