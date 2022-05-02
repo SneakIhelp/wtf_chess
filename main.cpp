@@ -189,7 +189,7 @@ int main()
 
         if(maksimal == 8)
         {
-            if(figuri[0]!=0 and (dumai[most_expensive_fig_R-1][most_expensive_fig_C+1]==".."  or dumai[most_expensive_fig_R-1][most_expensive_fig_C-1]==".."))
+            if(figuri[0]!=0 and (most_expensive_fig_R-1 >= 0 and most_expensive_fig_C+1 < 8) or (most_expensive_fig_R-1 >=0 and most_expensive_fig_C-1>=0))
             {
                 figura = "P";
                 if(dumai[most_expensive_fig_R-1][most_expensive_fig_C+1]=="..")
