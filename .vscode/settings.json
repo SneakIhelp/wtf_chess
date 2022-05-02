@@ -27,5 +27,8 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ]
+  ],
+  "C_Cpp_Runner.cCompilerPath": "C:/Program Files/msys2_64/mingw64/bin/gcc.exe",
+  "C_Cpp_Runner.cppCompilerPath": "C:/Program Files/msys2_64/mingw64/bin/g++.exe",
+  "C_Cpp_Runner.debuggerPath": "gdb"
 }
