@@ -87,7 +87,7 @@ long checkSlon(vector<vector<string>> matrix, int posV, int posG, string whiteOr
     long lose = 0;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if (abs(i - posV) == abs(j - posG) and matrix[i][j].substr(1, 1) == whiteOrDark + 'B' and (i != posV or j != posG)) lose -= 1;
+            if (abs(i - posV) == abs(j - posG) and matrix[i][j].substr(1, 1) == whiteOrDark + "B" and (i != posV or j != posG)) lose -= 1;
         } 
     }
     return lose;
@@ -95,14 +95,14 @@ long checkSlon(vector<vector<string>> matrix, int posV, int posG, string whiteOr
 
 long checkKnight(vector<vector<string>> matrix, int posV, int posG, string whiteOrDark){
     long lose = 0;
-    if(posV + 1 < 8 and posG + 2 < 8 and matrix[posV + 1][posG + 2].substr(1, 1) == whiteOrDark + 'N')   lose -= 1;
-    if(posV - 1 >= 0 and posG + 2 < 8 and matrix[posV - 1][posG + 2].substr(1, 1) == whiteOrDark + 'N')  lose -= 1;
-    if(posV + 2 < 8 and posG + 1 < 8 and matrix[posV + 2][posG + 1].substr(1, 1) == whiteOrDark + 'N')   lose -= 1;
-    if(posV + 2 < 8 and posG - 1 >= 0 and matrix[posV + 2][posG - 1].substr(1, 1) == whiteOrDark + 'N')  lose -= 1;
-    if(posV - 1 >= 0 and posG - 2 >= 0 and matrix[posV - 1][posG - 2].substr(1, 1) == whiteOrDark + 'N') lose -= 1;
-    if(posV + 1 < 8 and posG - 2 >= 0 and matrix[posV + 1][posG - 2].substr(1, 1) == whiteOrDark + 'N')  lose -= 1;
-    if(posV - 2 >= 0 and posG - 1 >= 0 and matrix[posV - 2][posG - 1].substr(1, 1) == whiteOrDark + 'N') lose -= 1;
-    if(posV - 2 >= 0 and posG + 1 < 8  and matrix[posV - 2][posG + 1].substr(1, 1) == whiteOrDark + 'N') lose -= 1;
+    if(posV + 1 < 8 and posG + 2 < 8 and matrix[posV + 1][posG + 2].substr(1, 1) == whiteOrDark + "N")   lose -= 1;
+    if(posV - 1 >= 0 and posG + 2 < 8 and matrix[posV - 1][posG + 2].substr(1, 1) == whiteOrDark + "N")  lose -= 1;
+    if(posV + 2 < 8 and posG + 1 < 8 and matrix[posV + 2][posG + 1].substr(1, 1) == whiteOrDark + "N")   lose -= 1;
+    if(posV + 2 < 8 and posG - 1 >= 0 and matrix[posV + 2][posG - 1].substr(1, 1) == whiteOrDark + "N")  lose -= 1;
+    if(posV - 1 >= 0 and posG - 2 >= 0 and matrix[posV - 1][posG - 2].substr(1, 1) == whiteOrDark + "N") lose -= 1;
+    if(posV + 1 < 8 and posG - 2 >= 0 and matrix[posV + 1][posG - 2].substr(1, 1) == whiteOrDark + "N")  lose -= 1;
+    if(posV - 2 >= 0 and posG - 1 >= 0 and matrix[posV - 2][posG - 1].substr(1, 1) == whiteOrDark + "N") lose -= 1;
+    if(posV - 2 >= 0 and posG + 1 < 8  and matrix[posV - 2][posG + 1].substr(1, 1) == whiteOrDark + "N") lose -= 1;
     
     return lose;
 }
@@ -111,7 +111,7 @@ long checkRook(vector<vector<string>> matrix, int posV, int posG, string whiteOr
     long lose = 0;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((posV == j or posG == i) and (posV != i or posG != j) and matrix[i][j].substr(1, 1) == whiteOrDark + 'R') lose -= 1;
+            if ((posV == j or posG == i) and (posV != i or posG != j) and matrix[i][j].substr(1, 1) == whiteOrDark + "R") lose -= 1;
         }
     }
     return lose;
@@ -119,14 +119,14 @@ long checkRook(vector<vector<string>> matrix, int posV, int posG, string whiteOr
 
 long checkKing(vector<vector<string>> matrix, int posV, int posG, string whiteOrDark){
     long lose = 0;
-    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
-    if(posV + 1 < 8 and matrix[posV + 1][posG].substr(1, 1) == 'K') lose -= 1;
-    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
-    if(posG - 1 < 8 and matrix[posV][posG - 1].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
-    if(posG + 1 < 8 and matrix[posV][posG + 1].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
-    if(posV - 1 >= 0 and posG - 1 >= 0 and matrix[posV - 1][posG - 1].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
-    if(posV - 1 >= 0 and matrix[posV - 1][posG].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
-    if(posV - 1 >= 0 and posG + 1 < 8 and matrix[posV - 1][posG + 1].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
+    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
+    if(posV + 1 < 8 and matrix[posV + 1][posG].substr(1, 1) == "K") lose -= 1;
+    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
+    if(posG - 1 < 8 and matrix[posV][posG - 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
+    if(posG + 1 < 8 and matrix[posV][posG + 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
+    if(posV - 1 >= 0 and posG - 1 >= 0 and matrix[posV - 1][posG - 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
+    if(posV - 1 >= 0 and matrix[posV - 1][posG].substr(1, 1) == whiteOrDark + "K") lose -= 1;
+    if(posV - 1 >= 0 and posG + 1 < 8 and matrix[posV - 1][posG + 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
 
     return lose;
 }
@@ -135,7 +135,7 @@ long checkFerz(vector<vector<string>> matrix, int posV, int posG, string whiteOr
     long lose = 0;
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
-            if((j==posG||i==posV||j-posG==i-posV||posG-j==posV-i||-(j-posG)==i-posV||-(posG-j)==posV-i) and (posV != i or posG != j) and matrix[i][j].substr(1, 1) == whiteOrDark + 'Q') lose -= 1;
+            if((j==posG||i==posV||j-posG==i-posV||posG-j==posV-i||-(j-posG)==i-posV||-(posG-j)==posV-i) and (posV != i or posG != j) and matrix[i][j].substr(1, 1) == whiteOrDark + "Q") lose -= 1;
         }
     }
     return lose;
@@ -143,20 +143,271 @@ long checkFerz(vector<vector<string>> matrix, int posV, int posG, string whiteOr
 
 long potery(vector<vector<string>> matrix, int posV, int posG, long numb){
     string whiteOrDark;
-    if(num % 2 == 1) whiteOrDark = "W";
+    if(numb % 2 == 1) whiteOrDark = "W";
     else whiteOrDark = "D";
     long lose = 0;
-    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(1, 1) == whiteOrDark + 'P') lose -= 1; //пешка
-    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(1, 1) == whiteOrDark + 'P') lose -= 1; //пешка
-    lose -= checkSlon(matrix, posV, posG);
-    lose -= checkKnight(matrix, posV, posG);
-    lose -= checkRock(matrix, posV, posG);
-    lose -= checkKing(matrix, posV, posG);
-    lose -= checkFerz(matrix, posV, posG);
+    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(1, 1) == whiteOrDark + "P") lose -= 1; //пешка
+    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(1, 1) == whiteOrDark + "P") lose -= 1; //пешка
+    lose += checkSlon(matrix, posV, posG, whiteOrDark);
+    lose += checkKnight(matrix, posV, posG, whiteOrDark);
+    lose += checkRook(matrix, posV, posG, whiteOrDark);
+    lose += checkKing(matrix, posV, posG, whiteOrDark);
+    lose += checkFerz(matrix, posV, posG, whiteOrDark);
+    return lose;
 }
 
-long poluch(vector<vector<string>> matrix, int posV, int posG){
-    
+long poluchPawn (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    if(WoD == "W"){
+        if(posV+1 < 8 and posG + 1 < 8 and matrix[posV+1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG+1].substr(1,1));
+        if(posV+1 < 8 and posG - 1 >=0 and matrix[posV+1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG-1].substr(1,1));
+    }
+    else{
+        if(posV-1 >=0 and posG + 1 < 8 and matrix[posV-1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG+1].substr(1,1));
+        if(posV-1 >=0 and posG - 1 >=0 and matrix[posV-1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG-1].substr(1,1));
+    }
+    return plas;
+}
+
+long poluchBishop(const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    int pr=posV,pc=posG;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    while(pr<matrix.size() and pc<matrix.size())
+    {
+        pr++;
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<matrix.size() and pc>=0)
+    {
+        pr++;
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr>=0 and pc>=0)
+    {
+        pr--;
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr>=0 and pc<matrix.size())
+    {
+        pr--;
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    return plas;
+}
+
+long poluchKnight (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    if(posV-2 >=0 and posG -1 >=0 and matrix[posV-2][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-2][posG-1].substr(1,1));
+    if(posV-2 >=0 and posG +1 < 8 and matrix[posV-2][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-2][posG+1].substr(1,1));
+    if(posV-1 >=0 and posG -2 >=0 and matrix[posV-1][posG-2].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG-2].substr(1,1));
+    if(posV-1 >=0 and posG +2 < 8 and matrix[posV-1][posG+2].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG+2].substr(1,1));
+    if(posV+1 < 8 and posG -2 >=0 and matrix[posV+1][posG-2].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG-2].substr(1,1));
+    if(posV+1 < 8 and posG +2 < 8 and matrix[posV+1][posG+2].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG+2].substr(1,1));
+    if(posV+2 < 8 and posG -1 >=0 and matrix[posV+2][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+2][posG-1].substr(1,1));
+    if(posV+2 < 8 and posG +1 < 8 and matrix[posV+2][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+2][posG+1].substr(1,1));
+    return plas;
+}
+
+long poluchRook (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    int pr=posV,pc=posG;
+    while(pr>=0)
+    {
+        pr--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<8)
+    {
+        pr++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pc>=0)
+    {
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pc<8)
+    {
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    return plas;
+}
+
+long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    int pr=posV,pc=posG;
+    while(pr>=0)
+    {
+        pr--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<8)
+    {
+        pr++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pc>=0)
+    {
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pc<8)
+    {
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<matrix.size() and pc<matrix.size())
+    {
+        pr++;
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<matrix.size() and pc>=0)
+    {
+        pr++;
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr>=0 and pc>=0)
+    {
+        pr--;
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr>=0 and pc<matrix.size())
+    {
+        pr--;
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    return plas;
+}
+
+long poluchKing (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    if(posV+1 < 8 and posG + 1 < 8 and matrix[posV+1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG+1].substr(1,1));
+    if(posV+1 < 8 and posG - 1 >=0 and matrix[posV+1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG-1].substr(1,1));
+    if(posV-1 >=0 and posG + 1 < 8 and matrix[posV-1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG+1].substr(1,1));
+    if(posV-1 >=0 and posG - 1 >=0 and matrix[posV-1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG-1].substr(1,1));
+
+    if(posV+1 < 8 and matrix[posV+1][posG].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG].substr(1,1));
+    if(posV-1 >=0 and matrix[posV-1][posG].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG].substr(1,1));
+
+    if(posG + 1 < 8 and matrix[posV][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV][posG+1].substr(1,1));
+    if(posG - 1 >=0 and matrix[posV][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV][posG-1].substr(1,1));
+    return plas;
+}
+
+long poluch(vector<vector<string>> matrix, int posV, int posG, long numb, long figg){
+    long plas = 0;
+    if(figg == 0) plas += poluchPawn(matrix, posV, posG, numb);
+    if(figg == 1) plas += poluchBishop(matrix, posV, posG, numb);
+    if(figg == 2) plas += poluchKnight(matrix, posV, posG, numb);
+    if(figg == 3) plas += poluchRook(matrix, posV, posG, numb);
+    if(figg == 4) plas += poluchQueen(matrix, posV, posG, numb);
+    else plas += poluchKing(matrix, posV, posG, numb);
+
+    return plas;
 }
 
 
@@ -228,21 +479,37 @@ int main()
                 figuri[4]--;
             else if(hodi[i].substr(0,1) == "K")
                 figuri[5]--;
-        }     
-
-    long figuraWithMinPrice = -1;
-    for(int i = 0; i < long(figuri.size()); i++){
-        if(figuri[i] != 0) {
-            figuraWithMinPrice = i;
-            break;
         }
-    } 
+    }     
 
-    int maximumPoluch = 0, maximumPoter = 0;
+    int maxi = 0, counterRavn = 0, tmpPot;
+    vector<int> ravn; //по идее для оптимизации равных, чтобы не брало последнюю выбранную, но это потом (counterRavn для этих же целей)
+    long maxFig = 0;
 
+    long maxxI = 0, maxxJ = 0, figg = 0;
+    maxi = potery(matrix, 0, 0, numb) + poluch(matrix, 0, 0, numb, figg);
     for(int i = 0; i < 8; i++){         //сравнение потерь (potery) (т.е. получение очков противником) и получения очков нами (poluch)
         for(int j = 0; j < 8; j++){
-            cout << potery(matrix, i, j) << endl;
-        }
-    }
+            tmpPot = potery(matrix, i, j, numb);
+            for(int c = 0; c < figuri.size(); c++){
+                figg = c;
+                if(figuri[c] and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
+                    maxi = potery(matrix, i, j, numb) + poluch(matrix, i, j, numb, figg);
+                    maxxI = i;
+                    maxxJ = j;
+                    maxFig = figg;
+                }
+             }
+          }
+     }
+ 
+
+    posicia_bukva = convert_for_pos(maxxJ);
+    posicia_4islo = 8 - maxxI;
+    figura = convert_for_fig(maxFig + 1);
+
+    ofstream file ("hod.txt");
+    file << figura << posicia_bukva << posicia_4islo;
+    file.close();
+    
 }
