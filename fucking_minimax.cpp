@@ -148,11 +148,12 @@ long potery(vector<vector<string>> matrix, int posV, int posG, long numb){
     long lose = 0;
     if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(1, 1) == whiteOrDark + 'P') lose -= 1; //пешка
     if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(1, 1) == whiteOrDark + 'P') lose -= 1; //пешка
-    lose -= checkSlon(matrix, posV, posG);
-    lose -= checkKnight(matrix, posV, posG);
-    lose -= checkRock(matrix, posV, posG);
-    lose -= checkKing(matrix, posV, posG);
-    lose -= checkFerz(matrix, posV, posG);
+    lose += checkSlon(matrix, posV, posG);
+    lose += checkKnight(matrix, posV, posG);
+    lose += checkRock(matrix, posV, posG);
+    lose += checkKing(matrix, posV, posG);
+    lose += checkFerz(matrix, posV, posG);
+    return potery;
 }
 
 long poluchPawn (const vector<vector<string>> &matrix, int posV, int posG, long numb){
@@ -397,8 +398,16 @@ long poluchKing (const vector<vector<string>> &matrix, int posV, int posG, long 
     return plas;
 }
 
-long poluch(vector<vector<string>> matrix, int posV, int posG){
-    
+long poluch(vector<vector<string>> matrix, int posV, int posG, long numb, long figg){
+    long plas = 0;
+    if(figg == 0) plas += poluchPawn(matrix, posV, posG, numb);
+    if(figg == 1) plas += poluchBishop(matrix, posV, posG, numb);
+    if(figg == 2) plas += poluchKnight(matrix, posV, posG, numb);
+    if(figg == 3) plas += poluchRook(matrix, posV, posG, numb);
+    if(figg == 4) plas += poluchQueen(matrix, posV, posG, numb);
+    else plas += poluchKing(matrix, posV, posG, numb);
+
+    return plas;
 }
 
 
@@ -472,19 +481,42 @@ int main()
                 figuri[5]--;
         }     
 
-    long figuraWithMinPrice = -1;
+    vector<long> ostFig;
     for(int i = 0; i < long(figuri.size()); i++){
         if(figuri[i] != 0) {
-            figuraWithMinPrice = i;
-            break;
+            ostFig.push_back(figuri[i]);
         }
     } 
 
-    int maximumPoluch = 0, maximumPoter = 0;
+    int maxi = 0, counterRavn = 0, tmpPot;
+    vector<int> ravn; //по идее для оптимизации равных, чтобы не брало последнюю выбранную, но это потом (counterRavn для этих же целей)
+    long maxFig = 0;
 
+    long maxxI = 0, maxxJ = 0, figg = 0;
+    maxi = potery(matrix, 0, 0, numb) + poluch(matrix, 0, 0, numb, figg);
     for(int i = 0; i < 8; i++){         //сравнение потерь (potery) (т.е. получение очков противником) и получения очков нами (poluch)
         for(int j = 0; j < 8; j++){
-            cout << potery(matrix, i, j) << endl;
+            if(matrix[i][j] == ".."){
+                tmpPot = potery(matrix, i, j, numb);
+                for(int c = 0; c < figuri.size(); c++){
+                    figg = c;
+                    if(figuri[c] and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
+                        maxi = potery(matrix, i, j, numb) + poluch(matrix, i, j, numb, figg);
+                        maxxI = i;
+                        maxxJ = j;
+                        maxFig = figg;
+                    }
+                }
+            }
         }
     }
+
+    posicia_bukva = convert_for_pos(j);
+    posicia_4islo = i;
+    figura = convert_for_fig(maxFig + 1)
+
+    ofstream f("hod.txt");
+    f <<figura<<posicia_bukva<<posicia_4islo;
+    f.close();
+    
 }
