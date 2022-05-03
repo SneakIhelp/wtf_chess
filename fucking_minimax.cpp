@@ -487,14 +487,15 @@ int main()
     long maxFig = 0;
 
     long maxxI = 0, maxxJ = 0, figg = 0;
-    maxi = potery(matrix, 0, 0, numb) + poluch(matrix, 0, 0, numb, figg);
+    maxi = potery(matrix, 0, 0, numb) * stoimost_figuri("P") + poluch(matrix, 0, 0, numb, figg);
     for(int i = 0; i < 8; i++){         //сравнение потерь (potery) (т.е. получение очков противником) и получения очков нами (poluch)
         for(int j = 0; j < 8; j++){
             tmpPot = potery(matrix, i, j, numb);
             for(int c = 0; c < figuri.size(); c++){
                 figg = c;
-                if(figuri[c] and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
-                    maxi = potery(matrix, i, j, numb) + poluch(matrix, i, j, numb, figg);
+                tmpPot *= stoimost_figuri(convert_for_fig(c + 1));
+                if(figuri[c] != 0 and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
+                    maxi = tmpPot + poluch(matrix, i, j, numb, figg);
                     maxxI = i;
                     maxxJ = j;
                     maxFig = figg;
