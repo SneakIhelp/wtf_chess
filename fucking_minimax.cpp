@@ -87,7 +87,7 @@ long checkSlon(vector<vector<string>> matrix, int posV, int posG, string whiteOr
     long lose = 0;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if (abs(i - posV) == abs(j - posG) and matrix[i][j].substr(1, 1) == whiteOrDark + "B" and (i != posV or j != posG)) lose -= 1;
+            if (abs(i - posV) == abs(j - posG) and matrix[i][j].substr(0, 2) == whiteOrDark + "B" and (i != posV or j != posG)) lose -= 1;
         } 
     }
     return lose;
@@ -95,14 +95,14 @@ long checkSlon(vector<vector<string>> matrix, int posV, int posG, string whiteOr
 
 long checkKnight(vector<vector<string>> matrix, int posV, int posG, string whiteOrDark){
     long lose = 0;
-    if(posV + 1 < 8 and posG + 2 < 8 and matrix[posV + 1][posG + 2].substr(1, 1) == whiteOrDark + "N")   lose -= 1;
-    if(posV - 1 >= 0 and posG + 2 < 8 and matrix[posV - 1][posG + 2].substr(1, 1) == whiteOrDark + "N")  lose -= 1;
-    if(posV + 2 < 8 and posG + 1 < 8 and matrix[posV + 2][posG + 1].substr(1, 1) == whiteOrDark + "N")   lose -= 1;
-    if(posV + 2 < 8 and posG - 1 >= 0 and matrix[posV + 2][posG - 1].substr(1, 1) == whiteOrDark + "N")  lose -= 1;
-    if(posV - 1 >= 0 and posG - 2 >= 0 and matrix[posV - 1][posG - 2].substr(1, 1) == whiteOrDark + "N") lose -= 1;
-    if(posV + 1 < 8 and posG - 2 >= 0 and matrix[posV + 1][posG - 2].substr(1, 1) == whiteOrDark + "N")  lose -= 1;
-    if(posV - 2 >= 0 and posG - 1 >= 0 and matrix[posV - 2][posG - 1].substr(1, 1) == whiteOrDark + "N") lose -= 1;
-    if(posV - 2 >= 0 and posG + 1 < 8  and matrix[posV - 2][posG + 1].substr(1, 1) == whiteOrDark + "N") lose -= 1;
+    if(posV + 1 < 8 and posG + 2 < 8 and matrix[posV + 1][posG + 2].substr(0, 2) == whiteOrDark + "N")   lose -= 1;
+    if(posV - 1 >= 0 and posG + 2 < 8 and matrix[posV - 1][posG + 2].substr(0, 2) == whiteOrDark + "N")  lose -= 1;
+    if(posV + 2 < 8 and posG + 1 < 8 and matrix[posV + 2][posG + 1].substr(0, 2) == whiteOrDark + "N")   lose -= 1;
+    if(posV + 2 < 8 and posG - 1 >= 0 and matrix[posV + 2][posG - 1].substr(0, 2) == whiteOrDark + "N")  lose -= 1;
+    if(posV - 1 >= 0 and posG - 2 >= 0 and matrix[posV - 1][posG - 2].substr(0, 2) == whiteOrDark + "N") lose -= 1;
+    if(posV + 1 < 8 and posG - 2 >= 0 and matrix[posV + 1][posG - 2].substr(0, 2) == whiteOrDark + "N")  lose -= 1;
+    if(posV - 2 >= 0 and posG - 1 >= 0 and matrix[posV - 2][posG - 1].substr(0, 2) == whiteOrDark + "N") lose -= 1;
+    if(posV - 2 >= 0 and posG + 1 < 8  and matrix[posV - 2][posG + 1].substr(0, 2) == whiteOrDark + "N") lose -= 1;
     
     return lose;
 }
@@ -111,7 +111,7 @@ long checkRook(vector<vector<string>> matrix, int posV, int posG, string whiteOr
     long lose = 0;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((posV == j or posG == i) and (posV != i or posG != j) and matrix[i][j].substr(1, 1) == whiteOrDark + "R") lose -= 1;
+            if ((posV == j or posG == i) and (posV != i or posG != j) and matrix[i][j].substr(0, 2) == whiteOrDark + "R") lose -= 1;
         }
     }
     return lose;
@@ -119,14 +119,14 @@ long checkRook(vector<vector<string>> matrix, int posV, int posG, string whiteOr
 
 long checkKing(vector<vector<string>> matrix, int posV, int posG, string whiteOrDark){
     long lose = 0;
-    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
-    if(posV + 1 < 8 and matrix[posV + 1][posG].substr(1, 1) == "K") lose -= 1;
-    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
-    if(posG - 1 < 8 and matrix[posV][posG - 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
-    if(posG + 1 < 8 and matrix[posV][posG + 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
-    if(posV - 1 >= 0 and posG - 1 >= 0 and matrix[posV - 1][posG - 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
-    if(posV - 1 >= 0 and matrix[posV - 1][posG].substr(1, 1) == whiteOrDark + "K") lose -= 1;
-    if(posV - 1 >= 0 and posG + 1 < 8 and matrix[posV - 1][posG + 1].substr(1, 1) == whiteOrDark + "K") lose -= 1;
+    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
+    if(posV + 1 < 8 and matrix[posV + 1][posG].substr(0, 2) == whiteOrDark + "K") lose -= 1;
+    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
+    if(posG - 1 < 8 and matrix[posV][posG - 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
+    if(posG + 1 < 8 and matrix[posV][posG + 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
+    if(posV - 1 >= 0 and posG - 1 >= 0 and matrix[posV - 1][posG - 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
+    if(posV - 1 >= 0 and matrix[posV - 1][posG].substr(0, 2) == whiteOrDark + "K") lose -= 1;
+    if(posV - 1 >= 0 and posG + 1 < 8 and matrix[posV - 1][posG + 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
 
     return lose;
 }
@@ -135,7 +135,7 @@ long checkFerz(vector<vector<string>> matrix, int posV, int posG, string whiteOr
     long lose = 0;
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
-            if((j==posG||i==posV||j-posG==i-posV||posG-j==posV-i||-(j-posG)==i-posV||-(posG-j)==posV-i) and (posV != i or posG != j) and matrix[i][j].substr(1, 1) == whiteOrDark + "Q") lose -= 1;
+            if((j==posG||i==posV||j-posG==i-posV||posG-j==posV-i||-(j-posG)==i-posV||-(posG-j)==posV-i) and (posV != i or posG != j) and matrix[i][j].substr(0, 2) == whiteOrDark + "Q") lose -= 1;
         }
     }
     return lose;
@@ -146,8 +146,8 @@ long potery(vector<vector<string>> matrix, int posV, int posG, long numb){
     if(numb % 2 == 1) whiteOrDark = "W";
     else whiteOrDark = "D";
     long lose = 0;
-    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(1, 1) == whiteOrDark + "P") lose -= 1; //пешка
-    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(1, 1) == whiteOrDark + "P") lose -= 1; //пешка
+    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(0, 2) == whiteOrDark + "P") lose -= 1; //пешка
+    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(0, 2) == whiteOrDark + "P") lose -= 1; //пешка
     lose += checkSlon(matrix, posV, posG, whiteOrDark);
     lose += checkKnight(matrix, posV, posG, whiteOrDark);
     lose += checkRook(matrix, posV, posG, whiteOrDark);
