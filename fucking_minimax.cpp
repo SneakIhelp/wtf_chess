@@ -160,7 +160,7 @@ long poluchPawn (const vector<vector<string>> &matrix, int posV, int posG, long 
     if(numb%2 == 1) WoD = "W";
     else WoD = "D";
     long plas = 0;
-    if(WoD == "D"){
+    if(WoD == "W"){
         if(posV+1 < 8 and posG + 1 < 8 and matrix[posV+1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG+1].substr(1,1));
         if(posV+1 < 8 and posG - 1 >=0 and matrix[posV+1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG-1].substr(1,1));
     }
