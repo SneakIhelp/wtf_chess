@@ -103,6 +103,8 @@ long checkKnight(vector<vector<string>> matrix, int posV, int posG, string white
     if(posV + 1 < 8 and posG - 2 >= 0 and matrix[posV + 1][posG - 2].substr(1, 1) == whiteOrDark + 'N')  lose -= 1;
     if(posV - 2 >= 0 and posG - 1 >= 0 and matrix[posV - 2][posG - 1].substr(1, 1) == whiteOrDark + 'N') lose -= 1;
     if(posV - 2 >= 0 and posG + 1 < 8  and matrix[posV - 2][posG + 1].substr(1, 1) == whiteOrDark + 'N') lose -= 1;
+    
+    return lose;
 }
 
 long checkRook(vector<vector<string>> matrix, int posV, int posG, string whiteOrDark){
@@ -116,6 +118,7 @@ long checkRook(vector<vector<string>> matrix, int posV, int posG, string whiteOr
 }
 
 long checkKing(vector<vector<string>> matrix, int posV, int posG, string whiteOrDark){
+    long lose = 0;
     if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
     if(posV + 1 < 8 and matrix[posV + 1][posG].substr(1, 1) == 'K') lose -= 1;
     if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(1, 1) == whiteOrDark + 'K') lose -= 1;
@@ -237,7 +240,7 @@ int main()
 
     int maximumPoluch = 0, maximumPoter = 0;
 
-    for(int i = 0; i < 8; i++){         //сравнение потерь (potery) (т.е. получение очков противником) и получения очков нами 
+    for(int i = 0; i < 8; i++){         //сравнение потерь (potery) (т.е. получение очков противником) и получения очков нами (poluch)
         for(int j = 0; j < 8; j++){
             cout << potery(matrix, i, j) << endl;
         }
