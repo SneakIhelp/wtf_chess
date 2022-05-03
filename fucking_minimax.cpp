@@ -155,6 +155,248 @@ long potery(vector<vector<string>> matrix, int posV, int posG, long numb){
     lose -= checkFerz(matrix, posV, posG);
 }
 
+long poluchPawn (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    if(WoD == "D"){
+        if(posV+1 < 8 and posG + 1 < 8 and matrix[posV+1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG+1].substr(1,1));
+        if(posV+1 < 8 and posG - 1 >=0 and matrix[posV+1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG-1].substr(1,1));
+    }
+    else{
+        if(posV-1 >=0 and posG + 1 < 8 and matrix[posV-1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG+1].substr(1,1));
+        if(posV-1 >=0 and posG - 1 >=0 and matrix[posV-1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG-1].substr(1,1));
+    }
+    return plas;
+}
+
+long poluchBishop(const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    int pr=posV,pc=posG;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    while(pr<matrix.size() and pc<matrix.size())
+    {
+        pr++;
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<matrix.size() and pc>=0)
+    {
+        pr++;
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr>=0 and pc>=0)
+    {
+        pr--;
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr>=0 and pc<matrix.size())
+    {
+        pr--;
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    return plas;
+}
+
+long poluchKnight (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    if(posV-2 >=0 and posG -1 >=0 and matrix[posV-2][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-2][posG-1].substr(1,1));
+    if(posV-2 >=0 and posG +1 < 8 and matrix[posV-2][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-2][posG+1].substr(1,1));
+    if(posV-1 >=0 and posG -2 >=0 and matrix[posV-1][posG-2].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG-2].substr(1,1));
+    if(posV-1 >=0 and posG +2 < 8 and matrix[posV-1][posG+2].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG+2].substr(1,1));
+    if(posV+1 < 8 and posG -2 >=0 and matrix[posV+1][posG-2].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG-2].substr(1,1));
+    if(posV+1 < 8 and posG +2 < 8 and matrix[posV+1][posG+2].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG+2].substr(1,1));
+    if(posV+2 < 8 and posG -1 >=0 and matrix[posV+2][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+2][posG-1].substr(1,1));
+    if(posV+2 < 8 and posG +1 < 8 and matrix[posV+2][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+2][posG+1].substr(1,1));
+    return plas;
+}
+
+long poluchRook (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    int pr=posV,pc=posG;
+    while(pr>=0)
+    {
+        pr--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<8)
+    {
+        pr++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pc>=0)
+    {
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pc<8)
+    {
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    return plas;
+}
+
+long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    int pr=posV,pc=posG;
+    while(pr>=0)
+    {
+        pr--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<8)
+    {
+        pr++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pc>=0)
+    {
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pc<8)
+    {
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<matrix.size() and pc<matrix.size())
+    {
+        pr++;
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr<matrix.size() and pc>=0)
+    {
+        pr++;
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr>=0 and pc>=0)
+    {
+        pr--;
+        pc--;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    pr=posV,pc=posG;
+    while(pr>=0 and pc<matrix.size())
+    {
+        pr--;
+        pc++;
+        if(matrix[pr][pc].substr(0,1)==WoD){
+            plas += stoimost_figuri(matrix[pr][pc].substr(1,1));
+            break;
+        }
+        else break;
+    }
+    return plas;
+}
+
+long poluchKing (const vector<vector<string>> &matrix, int posV, int posG, long numb){
+    string WoD;
+    if(numb%2 == 1) WoD = "W";
+    else WoD = "D";
+    long plas = 0;
+    if(posV+1 < 8 and posG + 1 < 8 and matrix[posV+1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG+1].substr(1,1));
+    if(posV+1 < 8 and posG - 1 >=0 and matrix[posV+1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG-1].substr(1,1));
+    if(posV-1 >=0 and posG + 1 < 8 and matrix[posV-1][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG+1].substr(1,1));
+    if(posV-1 >=0 and posG - 1 >=0 and matrix[posV-1][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG-1].substr(1,1));
+
+    if(posV+1 < 8 and matrix[posV+1][posG].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV+1][posG].substr(1,1));
+    if(posV-1 >=0 and matrix[posV-1][posG].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV-1][posG].substr(1,1));
+
+    if(posG + 1 < 8 and matrix[posV][posG+1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV][posG+1].substr(1,1));
+    if(posG - 1 >=0 and matrix[posV][posG-1].substr(0,1) == WoD) plas += stoimost_figuri(matrix[posV][posG-1].substr(1,1));
+    return plas;
+}
+
 long poluch(vector<vector<string>> matrix, int posV, int posG){
     
 }
