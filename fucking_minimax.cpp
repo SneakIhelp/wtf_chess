@@ -500,9 +500,9 @@ int main()
                     maxxJ = j;
                     maxFig = figg;
                 }
-             }
-          }
-     }
+            }
+        }
+    }
  
 
     posicia_bukva = convert_for_pos(maxxJ);
@@ -511,6 +511,5 @@ int main()
 
     ofstream file ("hod.txt");
     file << figura << posicia_bukva << posicia_4islo;
-    file.close();
-    
+    file.close();    
 }
