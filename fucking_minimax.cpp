@@ -83,6 +83,19 @@ int stoimost_figuri(string str) // ценность фигуры
         return 9;
 }
 
+long checkPawn(const vector<vector<string>> &matrix, int posV, int posG, string WoD){
+    long minas = 0;
+    if(WoD == "W"){
+        if(posV+1 < 8 and posG + 1 < 8 and matrix[posV+1][posG+1].substr(0,1) == WoD and matrix[posV+1][posG+1].substr(1,1)=="P") minas -= 1;
+        if(posV+1 < 8 and posG - 1 >=0 and matrix[posV+1][posG-1].substr(0,1) == WoD and matrix[posV+1][posG-1].substr(1,1)=="P") minas -= 1;
+    }
+    else{
+        if(posV-1 >=0 and posG + 1 < 8 and matrix[posV-1][posG+1].substr(0,1) == WoD and matrix[posV-1][posG+1].substr(1,1)=="P") minas -= 1;
+        if(posV-1 >=0 and posG - 1 >=0 and matrix[posV-1][posG-1].substr(0,1) == WoD and matrix[posV-1][posG-1].substr(1,1)=="P") minas -= 1;
+    }
+    return minas;
+}
+
 long checkSlon(vector<vector<string>> matrix, int posV, int posG, string whiteOrDark){
     long lose = 0;
     for (int i = 0; i < 8; i++) {
