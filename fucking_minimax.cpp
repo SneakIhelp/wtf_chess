@@ -496,7 +496,7 @@ int main()
         }
     }
 
-    int maxi = 0, counterRavn = 0, tmpPot;
+    int maxi = 0, counterRavn = 0, tmpPot = 0;
     vector<int> ravn; //по идее для оптимизации равных, чтобы не брало последнюю выбранную, но это потом (counterRavn для этих же целей)
     long maxFig = 0;
 
@@ -504,16 +504,17 @@ int main()
     maxi = -100000;
     for(int i = 0; i < 8; i++){         //сравнение потерь (potery) (т.е. получение очков противником) и получения очков нами (poluch)
         for(int j = 0; j < 8; j++){
-            tmpPot = potery(matrix, i, j, numb);
-            for(int c = 0; c < figuri.size(); c++){
-                figg = c;
-                tmpPot = potery(matrix, i, j, numb);
-                tmpPot *= stoimost_figuri(convert_for_fig(c + 1));
-                if(matrix[i][j] == ".." and figuri[c] != 0 and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
-                    maxi = tmpPot + poluch(matrix, i, j, numb, figg);
-                    maxxI = i;
-                    maxxJ = j;
-                    maxFig = figg;
+            if(matrix[i][j] == ".."){
+                for(int c = 0; c < figuri.size(); c++){
+                    figg = c;
+                    tmpPot = potery(matrix, i, j, numb);
+                    tmpPot *= stoimost_figuri(convert_for_fig(c + 1));
+                    if(figuri[c] != 0 and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
+                        maxi = tmpPot + poluch(matrix, i, j, numb, figg);
+                        maxxI = i;
+                        maxxJ = j;
+                        maxFig = figg;
+                    }
                 }
             }
         }
