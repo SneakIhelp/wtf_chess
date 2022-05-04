@@ -507,7 +507,7 @@ int main()
             for(int c = 0; c < figuri.size(); c++){
                 figg = c;
                 tmpPot *= stoimost_figuri(convert_for_fig(c + 1));
-                if(figuri[c] != 0 and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
+                if(matrix[i][j] != ".." and figuri[c] != 0 and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
                     maxi = tmpPot + poluch(matrix, i, j, numb, figg);
                     maxxI = i;
                     maxxJ = j;
