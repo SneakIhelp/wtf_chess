@@ -101,7 +101,7 @@ long checkSlon(vector<vector<string>> matrix, int posV, int posG, string whiteOr
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if (abs(i - posV) == abs(j - posG) and matrix[i][j].substr(0, 2) == whiteOrDark + "B" and (i != posV or j != posG)) lose -= 1;
-        } 
+        }
     }
     return lose;
 }
@@ -116,7 +116,7 @@ long checkKnight(vector<vector<string>> matrix, int posV, int posG, string white
     if(posV + 1 < 8 and posG - 2 >= 0 and matrix[posV + 1][posG - 2].substr(0, 2) == whiteOrDark + "N")  lose -= 1;
     if(posV - 2 >= 0 and posG - 1 >= 0 and matrix[posV - 2][posG - 1].substr(0, 2) == whiteOrDark + "N") lose -= 1;
     if(posV - 2 >= 0 and posG + 1 < 8  and matrix[posV - 2][posG + 1].substr(0, 2) == whiteOrDark + "N") lose -= 1;
-    
+
     return lose;
 }
 
@@ -191,7 +191,7 @@ long poluchBishop(const vector<vector<string>> &matrix, int posV, int posG, long
     if(numb%2 == 1) WoD = "W";
     else WoD = "D";
     long plas = 0;
-    while(pr<matrix.size() and pc<matrix.size())
+    while(pr<7 and pc<7)
     {
         pr++;
         pc++;
@@ -202,7 +202,7 @@ long poluchBishop(const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pr<matrix.size() and pc>=0)
+    while(pr<7 and pc>0)
     {
         pr++;
         pc--;
@@ -213,7 +213,7 @@ long poluchBishop(const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pr>=0 and pc>=0)
+    while(pr>0 and pc>0)
     {
         pr--;
         pc--;
@@ -224,7 +224,7 @@ long poluchBishop(const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pr>=0 and pc<matrix.size())
+    while(pr>0 and pc<7)
     {
         pr--;
         pc++;
@@ -259,7 +259,7 @@ long poluchRook (const vector<vector<string>> &matrix, int posV, int posG, long 
     else WoD = "D";
     long plas = 0;
     int pr=posV,pc=posG;
-    while(pr>=0)
+    while(pr>0)
     {
         pr--;
         if(matrix[pr][pc].substr(0,1)==WoD){
@@ -269,7 +269,7 @@ long poluchRook (const vector<vector<string>> &matrix, int posV, int posG, long 
         else break;
     }
     pr=posV,pc=posG;
-    while(pr<8)
+    while(pr<7)
     {
         pr++;
         if(matrix[pr][pc].substr(0,1)==WoD){
@@ -279,7 +279,7 @@ long poluchRook (const vector<vector<string>> &matrix, int posV, int posG, long 
         else break;
     }
     pr=posV,pc=posG;
-    while(pc>=0)
+    while(pc>0)
     {
         pc--;
         if(matrix[pr][pc].substr(0,1)==WoD){
@@ -289,7 +289,7 @@ long poluchRook (const vector<vector<string>> &matrix, int posV, int posG, long 
         else break;
     }
     pr=posV,pc=posG;
-    while(pc<8)
+    while(pc<7)
     {
         pc++;
         if(matrix[pr][pc].substr(0,1)==WoD){
@@ -307,7 +307,7 @@ long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long
     else WoD = "D";
     long plas = 0;
     int pr=posV,pc=posG;
-    while(pr>=0)
+    while(pr>0)
     {
         pr--;
         if(matrix[pr][pc].substr(0,1)==WoD){
@@ -317,7 +317,7 @@ long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pr<8)
+    while(pr<7)
     {
         pr++;
         if(matrix[pr][pc].substr(0,1)==WoD){
@@ -327,7 +327,7 @@ long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pc>=0)
+    while(pc>0)
     {
         pc--;
         if(matrix[pr][pc].substr(0,1)==WoD){
@@ -337,7 +337,7 @@ long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pc<8)
+    while(pc<7)
     {
         pc++;
         if(matrix[pr][pc].substr(0,1)==WoD){
@@ -346,8 +346,9 @@ long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long
         }
         else break;
     }
-    pr=posV,pc=posG;
-    while(pr<matrix.size() and pc<matrix.size())
+
+    pr=posV, pc=posG;
+    while(pr<7 and pc<7)
     {
         pr++;
         pc++;
@@ -358,7 +359,7 @@ long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pr<matrix.size() and pc>=0)
+    while(pr<7 and pc>0)
     {
         pr++;
         pc--;
@@ -369,7 +370,7 @@ long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pr>=0 and pc>=0)
+    while(pr>0 and pc>0)
     {
         pr--;
         pc--;
@@ -380,7 +381,7 @@ long poluchQueen (const vector<vector<string>> &matrix, int posV, int posG, long
         else break;
     }
     pr=posV,pc=posG;
-    while(pr>=0 and pc<matrix.size())
+    while(pr>0 and pc<7)
     {
         pr--;
         pc++;
@@ -475,7 +476,7 @@ int main()
                 figuri[5]--;
         }
     }
-    
+
     if(numb % 2 == 1)
     {
         for(int i = 1;i<long(hodi.size());i=i+2)    // Сколько фигур осталось в запасе
@@ -493,21 +494,21 @@ int main()
             else if(hodi[i].substr(0,1) == "K")
                 figuri[5]--;
         }
-    }     
+    }
 
     int maxi = 0, counterRavn = 0, tmpPot;
     vector<int> ravn; //по идее для оптимизации равных, чтобы не брало последнюю выбранную, но это потом (counterRavn для этих же целей)
     long maxFig = 0;
 
     long maxxI = 0, maxxJ = 0, figg = 0;
-    maxi = potery(matrix, 0, 0, numb) * stoimost_figuri("P") + poluch(matrix, 0, 0, numb, figg);
+    maxi = -100000;
     for(int i = 0; i < 8; i++){         //сравнение потерь (potery) (т.е. получение очков противником) и получения очков нами (poluch)
         for(int j = 0; j < 8; j++){
             tmpPot = potery(matrix, i, j, numb);
             for(int c = 0; c < figuri.size(); c++){
                 figg = c;
                 tmpPot *= stoimost_figuri(convert_for_fig(c + 1));
-                if(matrix[i][j] != ".." and figuri[c] != 0 and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
+                if(matrix[i][j] == ".." and figuri[c] != 0 and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
                     maxi = tmpPot + poluch(matrix, i, j, numb, figg);
                     maxxI = i;
                     maxxJ = j;
@@ -516,13 +517,13 @@ int main()
             }
         }
     }
- 
+
 
     posicia_bukva = convert_for_pos(maxxJ);
-    posicia_4islo = 8 - maxxI;
+    posicia_4islo = to_string(8 - maxxI);
     figura = convert_for_fig(maxFig + 1);
 
     ofstream file ("hod.txt");
     file << figura << posicia_bukva << posicia_4islo;
-    file.close();    
+    file.close();
 }
