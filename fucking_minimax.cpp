@@ -132,15 +132,14 @@ long checkRook(vector<vector<string>> matrix, int posV, int posG, string whiteOr
 
 long checkKing(vector<vector<string>> matrix, int posV, int posG, string whiteOrDark){
     long lose = 0;
-    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
-    if(posV + 1 < 8 and matrix[posV + 1][posG].substr(0, 2) == whiteOrDark + "K") lose -= 1;
-    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
-    if(posG - 1 < 8 and matrix[posV][posG - 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
-    if(posG + 1 < 8 and matrix[posV][posG + 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
-    if(posV - 1 >= 0 and posG - 1 >= 0 and matrix[posV - 1][posG - 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
-    if(posV - 1 >= 0 and matrix[posV - 1][posG].substr(0, 2) == whiteOrDark + "K") lose -= 1;
-    if(posV - 1 >= 0 and posG + 1 < 8 and matrix[posV - 1][posG + 1].substr(0, 2) == whiteOrDark + "K") lose -= 1;
-
+    if(posV -1 >=0 and posG-1 >=0 and matrix[posV-1][posG-1].substr(0,1) == whiteOrDark and matrix[posV-1][posG-1].substr(1,1) == "K") lose--;
+    if(posV -1 >=0 and matrix[posV-1][posG].substr(0,1) == whiteOrDark and matrix[posV-1][posG].substr(1,1) == "K") lose--;
+    if(posV -1 >=0 and posG+1 < 8 and matrix[posV-1][posG+1].substr(0,1) == whiteOrDark and matrix[posV-1][posG+1].substr(1,1) == "K") lose--;
+    if(posG+1 <8 and matrix[posV][posG+1].substr(0,1) == whiteOrDark and matrix[posV][posG+1].substr(1,1) == "K") lose--;
+    if(posV +1 <8 and posG+1 <8 and matrix[posV+1][posG+1].substr(0,1) == whiteOrDark and matrix[posV+1][posG+1].substr(1,1) == "K") lose--;
+    if(posV +1 <8 and matrix[posV+1][posG].substr(0,1) == whiteOrDark and matrix[posV+1][posG].substr(1,1) == "K") lose--;
+    if(posV +1 <8 and posG-1 >=0 and matrix[posV+1][posG-1].substr(0,1) == whiteOrDark and matrix[posV+1][posG-1].substr(1,1) == "K") lose--;
+    if(posG-1>=0 and matrix[posV][posG-1].substr(0,1) == whiteOrDark and matrix[posV][posG-1].substr(1,1) == "K") lose--;
     return lose;
 }
 
@@ -159,8 +158,7 @@ long potery(vector<vector<string>> matrix, int posV, int posG, long numb){
     if(numb % 2 == 1) whiteOrDark = "W";
     else whiteOrDark = "D";
     long lose = 0;
-    if(posV + 1 < 8 and posG - 1 >= 0 and matrix[posV + 1][posG - 1].substr(0, 2) == whiteOrDark + "P") lose -= 1; //пешка
-    if(posV + 1 < 8 and posG + 1 < 8 and matrix[posV + 1][posG + 1].substr(0, 2) == whiteOrDark + "P") lose -= 1; //пешка
+    lose += checkPawn(matrix, posV, posG, whiteOrDark);
     lose += checkSlon(matrix, posV, posG, whiteOrDark);
     lose += checkKnight(matrix, posV, posG, whiteOrDark);
     lose += checkRook(matrix, posV, posG, whiteOrDark);
@@ -496,34 +494,28 @@ int main()
         }
     }
 
-    int maxi = 0, counterRavn = 0, tmpPot = 0;
-    vector<int> ravn; //по идее для оптимизации равных, чтобы не брало последнюю выбранную, но это потом (counterRavn для этих же целей)
-    long maxFig = 0;
-
-    long maxxI = 0, maxxJ = 0, figg = 0;
-    maxi = -100000;
-    for(int i = 0; i < 8; i++){         //сравнение потерь (potery) (т.е. получение очков противником) и получения очков нами (poluch)
-        for(int j = 0; j < 8; j++){
-            if(matrix[i][j] == ".."){
-                for(int c = 0; c < figuri.size(); c++){
-                    figg = c;
-                    tmpPot = potery(matrix, i, j, numb);
-                    tmpPot *= stoimost_figuri(convert_for_fig(c + 1));
-                    if(figuri[c] != 0 and tmpPot + poluch(matrix, i, j, numb, figg) > maxi){
-                        maxi = tmpPot + poluch(matrix, i, j, numb, figg);
-                        maxxI = i;
-                        maxxJ = j;
-                        maxFig = figg;
+    long m_vigoda = -11111111,vigoda,Row,Collumn,Figure;
+    for(int r = 0;r<8;r++){
+        for(int c = 0;c<8;c++){
+            for(int i = 0; i<6;i++){
+                if(figuri[i]!=0 and dumai[r][c]==".."){
+                    vigoda = potery(dumai,r,c,numb)*stoimost_figuri(convert_for_fig(i+1));
+                    vigoda += poluch(dumai,r,c,numb,i);
+                    if(vigoda>m_vigoda){
+                        m_vigoda = vigoda;
+                        Row = r;
+                        Collumn = c;
+                        Figure = i;
                     }
                 }
             }
         }
     }
 
+    posicia_bukva = convert_for_pos(Collumn);
+    posicia_4islo = to_string(8 - Row);
+    figura = convert_for_fig(Figure + 1);
 
-    posicia_bukva = convert_for_pos(maxxJ);
-    posicia_4islo = to_string(8 - maxxI);
-    figura = convert_for_fig(maxFig + 1);
 
     ofstream file ("hod.txt");
     file << figura << posicia_bukva << posicia_4islo;
